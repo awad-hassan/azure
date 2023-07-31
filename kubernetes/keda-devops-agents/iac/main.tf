@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "build-agent-rg" {
-  name     = "uks-build-agent-rg"
+  name     = "dev-fab-ba-rg-uk-01"
   location = "UK South"
 }
 
 resource "azurerm_container_registry" "build-agent-registry" {
-  name                = "uksbuildagentacr"
+  name                = "devfabacrbauk01"
   resource_group_name = azurerm_resource_group.build-agent-rg.name
   location            = azurerm_resource_group.build-agent-rg.location
   sku                 = "Basic"
@@ -12,10 +12,10 @@ resource "azurerm_container_registry" "build-agent-registry" {
 }
 
 resource "azurerm_kubernetes_cluster" "build-agent-cluster" {
-  name                = "uks-build-agent-aks"
+  name                = "dev-fab-ba-aks-uk-01"
   location            = azurerm_resource_group.build-agent-rg.location
   resource_group_name = azurerm_resource_group.build-agent-rg.name
-  dns_prefix          = "uks-build-agent-aks"
+  dns_prefix          = "dev-fab-ba-aks-uk"
 
   default_node_pool {
     name       = "default"
